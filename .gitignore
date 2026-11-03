@@ -6,5 +6,6 @@ data/*.sqlite-*
 .env.*
 !.env.example
 *.log
+*.tsbuildinfo
 image-search/
 .DS_Store
