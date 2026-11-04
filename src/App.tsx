@@ -6,11 +6,6 @@ import { Home } from './pages/Home';
 import { Login } from './pages/Login';
 import { Register } from './pages/Register';
 import { ForgotPassword } from './pages/ForgotPassword';
-import { Events } from './pages/Events';
-import { EventDetail } from './pages/EventDetail';
-import { Executives } from './pages/Executives';
-import { CRDirectory } from './pages/CRDirectory';
-import { Contact } from './pages/Contact';
 import { NotFound } from './pages/NotFound';
 import { Overview } from './portals/Overview';
 import { Profile } from './portals/Profile';
@@ -32,14 +27,15 @@ export function App() {
     <Routes>
       <Route element={<PublicLayout />}>
         <Route path="/" element={<Home />} />
-        <Route path="/events" element={<Events />} />
-        <Route path="/events/:id" element={<EventDetail />} />
-        <Route path="/executives" element={<Executives />} />
-        <Route path="/class-representatives" element={<CRDirectory />} />
-        <Route path="/contact" element={<Contact />} />
         <Route path="/:role/login" element={<Login />} />
         <Route path="/:role/register" element={<Register />} />
         <Route path="/:role/forgot-password" element={<ForgotPassword />} />
+        {/* This build only includes the homepage + auth + portals. */}
+        <Route path="/events" element={<Navigate to="/#events" replace />} />
+        <Route path="/events/:id" element={<Navigate to="/#events" replace />} />
+        <Route path="/executives" element={<Navigate to="/" replace />} />
+        <Route path="/class-representatives" element={<Navigate to="/" replace />} />
+        <Route path="/contact" element={<Navigate to="/" replace />} />
         <Route path="*" element={<NotFound />} />
       </Route>
 

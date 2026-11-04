@@ -1,37 +1,40 @@
 import { useState, type FormEvent } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { Eye, EyeOff, LogIn, Loader2, ShieldCheck, ArrowRight, Copy, Check } from 'lucide-react';
+import { Eye, EyeOff, LogIn, Loader2, ShieldCheck, ArrowRight, Copy, Check, IdCard, BriefcaseBusiness, GraduationCap } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
 import { useToast } from '@/context/ToastContext';
 import { Alert, Field } from '@/components/ui';
-import { Logo } from '@/components/Logo';
-import { demoAccount, DEMO_NOTICE } from '@shared/demo';
+import { demoAccount } from '@shared/demo';
 import type { Role } from '@shared/types';
 
 const config: Record<Role, {
-  title: string; subtitle: string; identifierLabel: string; placeholder: string;
+  title: string; subtitle: string; identifierLabel: string;
   registerText: string; registerLink: string; registerNote: string; keepSignedIn: boolean; forgot: boolean;
+  icon: typeof IdCard;
 }> = {
   member: {
     title: 'Member Login',
     subtitle: 'Sign in with your student ID to view your membership and event registrations.',
-    identifierLabel: 'Student ID', placeholder: 'NUB-2026-001',
+    identifierLabel: 'Student ID',
     registerText: 'Not a member yet?', registerLink: 'Join NUBCC',
     registerNote: 'Your account activates once your payment is verified.', keepSignedIn: false, forgot: true,
+    icon: IdCard,
   },
   cr: {
     title: 'Class Representative Login',
     subtitle: 'Sign in to manage your CR profile.',
-    identifierLabel: 'Email', placeholder: 'cr@demo.nubcc.test',
+    identifierLabel: 'Email',
     registerText: 'New here?', registerLink: 'Register as a CR',
     registerNote: 'New accounts need admin approval before you can sign in.', keepSignedIn: true, forgot: false,
+    icon: GraduationCap,
   },
   executive: {
     title: 'Executive Login',
     subtitle: 'Sign in to the executive committee portal.',
-    identifierLabel: 'Email', placeholder: 'executive@demo.nubcc.test',
+    identifierLabel: 'Email',
     registerText: 'New here?', registerLink: 'Register as an executive',
     registerNote: 'New accounts need admin approval before you can sign in.', keepSignedIn: true, forgot: false,
+    icon: BriefcaseBusiness,
   },
 };
 
@@ -41,6 +44,7 @@ export function Login() {
   const { role: roleParam } = useParams();
   const role = (roles.includes(roleParam as Role) ? roleParam : 'member') as Role;
   const cfg = config[role];
+  const Icon = cfg.icon;
   const demo = demoAccount(role);
   const navigate = useNavigate();
   const { login, user } = useAuth();
@@ -86,50 +90,37 @@ export function Login() {
 
   return (
     <div className="auth-page">
-      <div className="auth-bg" aria-hidden="true" />
+      <div className="auth-hero">
+        <div className="auth-hero-icon"><Icon size={26} /></div>
+        <h1>{cfg.title}</h1>
+        <p>{cfg.subtitle}</p>
+      </div>
+
       <div className="auth-container">
-        <div className="auth-brand">
-          <Logo />
-          <div className="auth-role-tabs" role="tablist" aria-label="Portal type">
-            {roles.map((r) => (
-              <Link key={r} to={`/${r}/login`} className={r === role ? 'active' : ''} role="tab" aria-selected={r === role}>
-                {r === 'cr' ? 'CR' : r === 'executive' ? 'Executive' : 'Member'}
-              </Link>
-            ))}
-          </div>
-        </div>
-
         <div className="auth-card">
-          <div className="auth-card-header">
-            <div className="auth-icon"><LogIn size={24} /></div>
-            <h1>{cfg.title}</h1>
-            <p>{cfg.subtitle}</p>
-          </div>
-
           {user && user.role === role && (
             <Alert type="success">
-              You are already signed in as {user.name}. <Link to={`/${role}`}>Go to your portal <ArrowRight size={14} /></Link>
+              Signed in as {user.name}. <Link to={`/${role}`}>Open portal <ArrowRight size={14} /></Link>
             </Alert>
           )}
 
-          <form onSubmit={onSubmit} className="auth-form">
-            <Field label={cfg.identifierLabel} required>
+          <form onSubmit={onSubmit} className="auth-form" key={role}>
+            <Field label={cfg.identifierLabel}>
               <input
                 type={role === 'member' ? 'text' : 'email'}
                 value={identifier}
                 onChange={(e) => setIdentifier(e.target.value)}
-                placeholder={cfg.placeholder}
                 autoComplete="username"
+                autoFocus
                 required
               />
             </Field>
-            <Field label="Password" required>
+            <Field label="Password">
               <div className="password-input">
                 <input
                   type={showPassword ? 'text' : 'password'}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  placeholder="Enter demo password"
                   autoComplete="current-password"
                   required
                 />
@@ -151,33 +142,33 @@ export function Login() {
 
             {error && <Alert type="error">{error}</Alert>}
 
-            <button className="btn btn-primary btn-block" type="submit" disabled={busy}>
+            <button className="btn btn-primary btn-block auth-submit" type="submit" disabled={busy}>
               {busy ? <Loader2 size={18} className="spin" /> : <LogIn size={18} />} Sign in
             </button>
           </form>
 
-          <div className="demo-credentials">
-            <div className="demo-credentials-header">
-              <ShieldCheck size={16} />
-              <strong>Demo account</strong>
-              <button type="button" className="btn btn-ghost btn-xs" onClick={copyDemo}>
-                {copied ? <Check size={13} /> : <Copy size={13} />} {copied ? 'Copied' : 'Copy'}
-              </button>
+          <details className="demo-access">
+            <summary><ShieldCheck size={15} /> Demo access</summary>
+            <div className="demo-access-body">
+              <p className="demo-warning">Demo clone only. Use this sample account — never enter real NUBCC credentials.</p>
+              <dl>
+                <div><dt>{demo.identifierLabel}</dt><dd><code>{demo.identifier}</code></dd></div>
+                <div><dt>Password</dt><dd><code>{demo.password}</code></dd></div>
+              </dl>
+              <div className="demo-access-actions">
+                <button type="button" className="btn btn-outline btn-sm" onClick={fillDemo}>Use demo account</button>
+                <button type="button" className="btn btn-ghost btn-sm" onClick={copyDemo}>
+                  {copied ? <Check size={14} /> : <Copy size={14} />} {copied ? 'Copied' : 'Copy'}
+                </button>
+              </div>
             </div>
-            <dl>
-              <div><dt>{demo.identifierLabel}</dt><dd><code>{demo.identifier}</code></dd></div>
-              <div><dt>Password</dt><dd><code>{demo.password}</code></dd></div>
-            </dl>
-            <button type="button" className="btn btn-outline btn-sm btn-block" onClick={fillDemo}>Use demo account</button>
-            <p className="demo-warning">{DEMO_NOTICE}</p>
-          </div>
-
-          <div className="auth-footer">
-            <p>{cfg.registerText} <Link to={`/${role}/register`}>{cfg.registerLink}</Link></p>
-            <small>{cfg.registerNote}</small>
-          </div>
+          </details>
         </div>
-        <p className="auth-back"><Link to="/">← Back to demo home</Link></p>
+
+        <div className="auth-footer">
+          <p>{cfg.registerText} <Link to={`/${role}/register`}>{cfg.registerLink}</Link></p>
+          <small>{cfg.registerNote}</small>
+        </div>
       </div>
     </div>
   );
