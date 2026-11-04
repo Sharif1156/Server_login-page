@@ -30,7 +30,7 @@ export function MyRegistrations() {
               <div className="registration-item-main">
                 <div className="mini-date"><span>{new Date(e.eventDate).toLocaleDateString('en-US', { month: 'short' })}</span><strong>{new Date(e.eventDate).getDate()}</strong></div>
                 <div>
-                  <h3><Link to={`/events/${e.id}`}>{e.title}</Link></h3>
+                  <h3><Link to="/member/events">{e.title}</Link></h3>
                   <div className="event-meta"><span><CalendarDays size={14} />{formatDate(e.eventDate)} · {formatTime(e.eventDate)}</span><span><MapPin size={14} />{e.location}</span></div>
                 </div>
               </div>

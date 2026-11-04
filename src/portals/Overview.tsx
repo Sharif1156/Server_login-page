@@ -103,7 +103,7 @@ export function Overview() {
             {upcoming.length === 0 ? <p className="muted">No upcoming events.</p> : (
               <div className="mini-event-list">
                 {upcoming.map((e) => (
-                  <Link key={e.id} to={`/events/${e.id}`} className="mini-event">
+                  <Link key={e.id} to={`/${role}/events`} className="mini-event">
                     <div className="mini-date"><span>{new Date(e.eventDate).toLocaleDateString('en-US', { month: 'short' })}</span><strong>{new Date(e.eventDate).getDate()}</strong></div>
                     <div className="mini-event-info"><strong>{e.title}</strong><small>{e.location} · {e.type}</small></div>
                     {e.isRegistered && <Badge variant="success">Registered</Badge>}
