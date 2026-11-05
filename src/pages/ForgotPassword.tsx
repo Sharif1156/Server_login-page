@@ -16,7 +16,7 @@ export function ForgotPassword() {
           <div className="auth-card-header">
             <div className="auth-icon"><KeyRound size={24} /></div>
             <h1>Forgot password</h1>
-            <p>Password reset is disabled in this demo clone.</p>
+            <p>Password reset is not available here. Please contact the Nafi IT team.</p>
           </div>
           <Alert type="info">
             No email is sent and no real account exists. Use the sample {role} account to explore the portal:

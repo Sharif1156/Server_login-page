@@ -49,7 +49,7 @@ export function Settings() {
         </div>
         <div className="card">
           <h3>About this demo</h3>
-          <Alert type="warning"><ShieldAlert size={16} /> This is an unofficial demo clone. It is not connected to the live NUBCC website, does not send emails, does not process payments, and must never receive real credentials or personal data.</Alert>
+          <Alert type="warning"><ShieldAlert size={16} /> Keep your password private and do not share your account with anyone.</Alert>
           <p className="muted">Authentication uses a local session cookie and only the advertised sample accounts. All portal data is fictional and stored in a local SQLite database.</p>
           <Link className="btn btn-ghost" to="/"><ExternalLink size={16} /> Visit public demo site</Link>
         </div>

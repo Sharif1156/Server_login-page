@@ -25,9 +25,8 @@ const portalCards = [
 ];
 
 const faqs = [
-  { q: 'Who can sign in?', a: 'This demo has three sample accounts: member, class representative and executive. Use the “Demo access” panel on each login page.' },
-  { q: 'Is this the live NUBCC website?', a: 'No. This is an unofficial demo clone focused on the login pages and portals. It does not connect to nubcc.club and does not process real payments or emails.' },
-  { q: 'Can I use my real NUBCC password?', a: 'No. Only the advertised sample accounts work. Never enter real credentials or personal information.' },
+  { q: 'Who can sign in?', a: 'Members, class representatives and executives with an approved account can sign in using the portal for their role.' },
+  { q: 'Forgot your password?', a: 'Use the Forgot password link on the login page of your portal.' },
   { q: 'What can I do after signing in?', a: 'Members can manage events and courses, CRs can manage classmates and attendance, and executives can review applications and manage club content.' },
 ];
 
@@ -46,9 +45,9 @@ export function Home() {
     <>
       <section className="home-hero">
         <div className="container home-hero-inner">
-          <div className="hero-pill"><ShieldCheck size={15} /> Demo portal workspace</div>
-          <h1>NUBCC login &amp; portal workspace</h1>
-          <p>A focused demo of the NUB CSE Computer Club sign-in experience and role-based portals for members, class representatives and executives.</p>
+          <div className="hero-pill"><ShieldCheck size={15} /> Secure portal access</div>
+          <h1>Nafi IT login &amp; portal</h1>
+          <p>Sign in to the Nafi IT portals for members, class representatives and executives for members, class representatives and executives.</p>
           <div className="hero-actions">
             <Link className="btn btn-join btn-lg" to="/member/register">Join Us <ArrowRight size={18} /></Link>
             <Link className="btn btn-outline-light btn-lg" to="/member/login">Member login</Link>
@@ -90,7 +89,7 @@ export function Home() {
             <h2>Homepage, login pages and portals only</h2>
             <p>This build intentionally keeps the public surface small: one homepage, three login pages, registration/forgot-password flows, and the protected member, CR and executive portals.</p>
             <ul className="check-list">
-              <li>Dark NUBCC-inspired interface</li>
+              <li>Dark Nafi IT-styled interface</li>
               <li>Role-based protected portals</li>
               <li>Local demo data and sample accounts</li>
               <li>No real credentials, payments or emails</li>

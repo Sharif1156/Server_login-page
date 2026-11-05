@@ -6,7 +6,7 @@ export function NotFound() {
     <div className="container section not-found">
       <Compass size={56} />
       <h1>Page not found</h1>
-      <p className="muted">This demo clone does not have that page.</p>
+      <p className="muted">This page does not exist.</p>
       <Link className="btn btn-primary" to="/">Back to home</Link>
     </div>
   );

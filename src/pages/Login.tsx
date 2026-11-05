@@ -16,7 +16,7 @@ const config: Record<Role, {
     title: 'Member Login',
     subtitle: 'Sign in with your student ID to view your membership and event registrations.',
     identifierLabel: 'Student ID',
-    registerText: 'Not a member yet?', registerLink: 'Join NUBCC',
+    registerText: 'Not a member yet?', registerLink: 'Join Nafi IT',
     registerNote: 'Your account activates once your payment is verified.', keepSignedIn: false, forgot: true,
     icon: IdCard,
   },
@@ -150,7 +150,7 @@ export function Login() {
           <details className="demo-access">
             <summary><ShieldCheck size={15} /> Demo access</summary>
             <div className="demo-access-body">
-              <p className="demo-warning">Demo clone only. Use this sample account — never enter real NUBCC credentials.</p>
+              <p className="demo-warning">Use your assigned Nafi IT account credentials only.</p>
               <dl>
                 <div><dt>{demo.identifierLabel}</dt><dd><code>{demo.identifier}</code></dd></div>
                 <div><dt>Password</dt><dd><code>{demo.password}</code></dd></div>

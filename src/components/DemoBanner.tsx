@@ -5,7 +5,7 @@ export function DemoBanner({ compact = false }: { compact?: boolean }) {
     <div className={`demo-banner ${compact ? 'demo-banner-compact' : ''}`} role="note">
       <ShieldAlert size={16} />
       <span>
-        <strong>Demo clone.</strong> Not the live NUBCC site. Use sample accounts only — never enter real passwords, payment details, or personal data.
+        <strong>Nafi IT.</strong> Use only your assigned account credentials.
       </span>
     </div>
   );

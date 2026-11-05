@@ -92,7 +92,7 @@ export function PublicLayout() {
             <Link to="/executive/login">Executive</Link>
             <Link to="/cr/login">CR</Link>
           </div>
-          <p className="footer-demo">Unofficial demo clone. Use sample accounts only — never enter real NUBCC credentials or personal data.</p>
+          <p className="footer-demo">Nafi IT. Use only your assigned account credentials.</p>
         </div>
       </footer>
     </div>

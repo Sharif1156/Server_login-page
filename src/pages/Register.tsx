@@ -18,9 +18,9 @@ const bloodGroups = ['A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-'];
 const semesters = Array.from({ length: 12 }, (_, i) => i + 1);
 
 const titles: Record<Role, { title: string; intro: string; eyebrow: string }> = {
-  member: { title: 'Become a Member', intro: 'Join NUBCC Family — Registration Fee: ৳99 Only', eyebrow: 'Membership' },
+  member: { title: 'Become a Member', intro: 'Join the Nafi IT team', eyebrow: 'Membership' },
   cr: { title: 'Register as a Class Representative', intro: 'Are you the CR of your section? Register so classmates can find you and the club can reach your batch quickly.', eyebrow: 'Apply · Class Representative' },
-  executive: { title: 'Join the Executive Committee', intro: 'Help lead NUBCC — plan events, run workshops and represent the club. Fill in the form and the admin panel will review your application.', eyebrow: 'Apply · Executive Committee' },
+  executive: { title: 'Join the Executive Committee', intro: 'Help lead Nafi IT — plan events, run workshops and represent the club. Fill in the form and the admin panel will review your application.', eyebrow: 'Apply · Executive Committee' },
 };
 
 export function Register() {
