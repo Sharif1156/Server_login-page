@@ -17,7 +17,7 @@ const config: Record<Role, {
     subtitle: 'Sign in with your student ID to view your membership and event registrations.',
     identifierLabel: 'Student ID',
     registerText: 'Not a member yet?', registerLink: 'Join Nafi IT',
-    registerNote: 'Your account activates once your payment is verified.', keepSignedIn: false, forgot: true,
+    registerNote: 'Your account is activated after review by the Nafi IT team.', keepSignedIn: false, forgot: true,
     icon: IdCard,
   },
   cr: {
@@ -46,6 +46,7 @@ export function Login() {
   const cfg = config[role];
   const Icon = cfg.icon;
   const demo = demoAccount(role);
+  const showDemo = import.meta.env.VITE_SHOW_DEMO === 'true';
   const navigate = useNavigate();
   const { login, user } = useAuth();
   const { toast } = useToast();
@@ -147,6 +148,7 @@ export function Login() {
             </button>
           </form>
 
+          {showDemo && (
           <details className="demo-access">
             <summary><ShieldCheck size={15} /> Demo access</summary>
             <div className="demo-access-body">
@@ -163,6 +165,7 @@ export function Login() {
               </div>
             </div>
           </details>
+          )}
         </div>
 
         <div className="auth-footer">
