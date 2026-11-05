@@ -21,7 +21,9 @@ declare module 'express-session' {
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, '..');
-const isProd = process.env.NODE_ENV === 'production';
+const isProd = process.env.NODE_ENV === 'production' || process.argv.includes('--production');
+// Secure cookies need HTTPS. Turn on only when the site is served over https.
+const cookieSecure = process.env.COOKIE_SECURE === 'true';
 const PORT = Number(process.env.PORT || 3000);
 
 const app = express();
@@ -44,7 +46,7 @@ app.use(session({
   cookie: {
     httpOnly: true,
     sameSite: 'lax',
-    secure: isProd,
+    secure: cookieSecure,
     maxAge: 8 * 60 * 60 * 1000,
   },
 }));
