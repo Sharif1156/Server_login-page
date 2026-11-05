@@ -22,9 +22,9 @@ const stats = await req('/api/public/stats');
 assert(stats.status === 200 && stats.data.stats.members > 0, 'public stats');
 
 const accounts = [
-  ['member', 'NAFIIT-2026-001', 'Member@123'],
-  ['cr', 'cr@demo.nafiit.test', 'Cr@12345'],
-  ['executive', 'executive@demo.nafiit.test', 'Exec@12345'],
+  ['member', 'NAFIIT-2026-001', process.env.NAFIIT_MEMBER_PASSWORD],
+  ['cr', 'cr@demo.nafiit.test', process.env.NAFIIT_CR_PASSWORD],
+  ['executive', 'executive@demo.nafiit.test', process.env.NAFIIT_EXECUTIVE_PASSWORD],
 ];
 const cookies = {};
 for (const [role, identifier, password] of accounts) {

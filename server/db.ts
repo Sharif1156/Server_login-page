@@ -278,6 +278,15 @@ export function logActivity(userId: number | null, action: string) {
   run('INSERT INTO activity (user_id, action, created_at) VALUES (?, ?, ?)', userId, action, new Date().toISOString());
 }
 
+function accountPassword(role: string): string {
+  const key = `NAFIIT_${role.toUpperCase()}_PASSWORD`;
+  const value = process.env[key];
+  if (!value || value.length < 8) {
+    throw new Error(`Set ${key} to a password of at least 8 characters before seeding the database.`);
+  }
+  return value;
+}
+
 export function seedDatabase(force = false) {
   const count = get<{ n: number }>('SELECT COUNT(*) AS n FROM users')!.n;
   if (count > 0 && !force) return;
@@ -292,7 +301,7 @@ export function seedDatabase(force = false) {
     const insertUser = db.prepare(`INSERT INTO users
       (role,name,email,student_id,password_hash,phone,batch,semester,section,blood_group,position,status,membership_id,joined_at,skills,experience,address,github,avatar_color)
       VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`);
-    const hashes = Object.fromEntries(DEMO_ACCOUNTS.map((a) => [a.role, bcrypt.hashSync(a.password, 10)]));
+    const hashes = Object.fromEntries(DEMO_ACCOUNTS.map((a) => [a.role, bcrypt.hashSync(accountPassword(a.role), 10)]));
     insertUser.run('member', 'Ayesha Rahman', 'ayesha@demo.nafiit.test', 'NAFIIT-2026-001', hashes.member, '+8801700000001', '62', 6, 'A', 'B+', '', 'approved', 'NAFIIT-M-2026-001', '2026-01-15T09:00:00.000Z', 'React, TypeScript, UI design', 'Volunteered at Nafi IT CSE Day 2025', 'Dhaka, Bangladesh', 'https://github.com/demo-ayesha', '#0d6efd');
     insertUser.run('cr', 'Tanvir Ahmed', 'cr@demo.nafiit.test', 'NAFIIT-2026-002', hashes.cr, '+8801700000002', '62', 6, 'A', 'O+', 'Class Representative', 'approved', 'NAFIIT-CR-2026-002', '2026-01-20T09:00:00.000Z', 'Communication, coordination', 'CR for Batch 62 Section A', 'Dhaka, Bangladesh', 'https://github.com/demo-tanvir', '#0a2540');
     insertUser.run('executive', 'Nusrat Jahan', 'executive@demo.nafiit.test', 'NAFIIT-2026-003', hashes.executive, '+8801700000003', '61', 8, 'B', 'A+', 'General Secretary', 'approved', 'NAFIIT-E-2026-003', '2025-12-01T09:00:00.000Z', 'Leadership, event management, public speaking', 'Organized 12+ club events', 'Dhaka, Bangladesh', 'https://github.com/demo-nusrat', '#f6b73c');

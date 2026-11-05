@@ -103,7 +103,7 @@ app.post('/api/auth/login', authLimiter, asyncHandler(async (req, res) => {
   }
   const record = queries.userByLogin(role, identifier);
   if (!record || !bcrypt.compareSync(password, record.passwordHash)) {
-    return res.status(401).json({ error: 'Incorrect demo password. Use the sample password shown on this page.' });
+    return res.status(401).json({ error: 'Incorrect password.' });
   }
   await new Promise<void>((resolve, reject) => req.session.regenerate((err) => (err ? reject(err) : resolve())));
   req.session.userId = record.user.id;
@@ -420,5 +420,5 @@ app.use((err: any, _req: express.Request, res: express.Response, _next: express.
 
 httpServer.listen(PORT, '0.0.0.0', () => {
   console.log(`Nafi IT demo portal running at http://0.0.0.0:${PORT} (${isProd ? 'production' : 'development'})`);
-  console.log('Demo accounts: member NAFIIT-2026-001 / Member@123 · cr cr@demo.nafiit.test / Cr@12345 · executive executive@demo.nafiit.test / Exec@12345');
+  console.log('Accounts use passwords from NAFIIT_MEMBER_PASSWORD, NAFIIT_CR_PASSWORD and NAFIIT_EXECUTIVE_PASSWORD.');
 });

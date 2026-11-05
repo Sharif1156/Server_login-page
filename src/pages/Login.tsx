@@ -60,13 +60,13 @@ export function Login() {
 
   const fillDemo = () => {
     setIdentifier(demo.identifier);
-    setPassword(demo.password);
+    setPassword('');
     setError('');
   };
 
   const copyDemo = async () => {
     try {
-      await navigator.clipboard.writeText(`${demo.identifier} / ${demo.password}`);
+      await navigator.clipboard.writeText(demo.identifier);
       setCopied(true);
       setTimeout(() => setCopied(false), 1500);
     } catch {
@@ -155,7 +155,7 @@ export function Login() {
               <p className="demo-warning">Use your assigned Nafi IT account credentials only.</p>
               <dl>
                 <div><dt>{demo.identifierLabel}</dt><dd><code>{demo.identifier}</code></dd></div>
-                <div><dt>Password</dt><dd><code>{demo.password}</code></dd></div>
+                
               </dl>
               <div className="demo-access-actions">
                 <button type="button" className="btn btn-outline btn-sm" onClick={fillDemo}>Use demo account</button>

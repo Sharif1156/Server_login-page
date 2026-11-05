@@ -22,7 +22,6 @@ export function ForgotPassword() {
             No email is sent and no real account exists. Use the sample {role} account to explore the portal:
             <br /><br />
             <strong>{demo.identifierLabel}:</strong> <code>{demo.identifier}</code><br />
-            <strong>Password:</strong> <code>{demo.password}</code>
           </Alert>
           <Link className="btn btn-primary btn-block" to={`/${role}/login`}><ArrowLeft size={16} /> Back to {role === 'cr' ? 'CR' : role} login</Link>
         </div>

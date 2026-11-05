@@ -42,8 +42,6 @@ export function Settings() {
           <dl className="profile-dl">
             <div><dt>Signed in as</dt><dd>{user.name}</dd></div>
             <div><dt>Role</dt><dd>{roleLabel(user.role)}</dd></div>
-            <div><dt>Demo login</dt><dd><code>{demo.identifier}</code></dd></div>
-            <div><dt>Demo password</dt><dd><code>{demo.password}</code></dd></div>
           </dl>
           <button className="btn btn-danger" onClick={handleLogout}><LogOut size={16} /> Sign out</button>
         </div>

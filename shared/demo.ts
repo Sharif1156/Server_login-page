@@ -16,7 +16,7 @@ export const DEMO_ACCOUNTS: Array<{
     label: 'Member',
     identifierLabel: 'Student ID',
     identifier: 'NAFIIT-2026-001',
-    password: 'Member@123',
+    password: '',
     name: 'Ayesha Rahman',
   },
   {
@@ -24,7 +24,7 @@ export const DEMO_ACCOUNTS: Array<{
     label: 'Class Representative',
     identifierLabel: 'Email',
     identifier: 'cr@demo.nafiit.test',
-    password: 'Cr@12345',
+    password: '',
     name: 'Tanvir Ahmed',
   },
   {
@@ -32,7 +32,7 @@ export const DEMO_ACCOUNTS: Array<{
     label: 'Executive',
     identifierLabel: 'Email',
     identifier: 'executive@demo.nafiit.test',
-    password: 'Exec@12345',
+    password: '',
     name: 'Nusrat Jahan',
   },
 ];
