@@ -84,7 +84,7 @@ export function Overview() {
         <div className="overview-main">
           {role === 'member' && (
             <div className="membership-card">
-              <div className="membership-top"><span>NUBCC MEMBER</span><Badge variant="gold">Active</Badge></div>
+              <div className="membership-top"><span>NAFI IT MEMBER</span><Badge variant="gold">Active</Badge></div>
               <div className="membership-body">
                 <Avatar name={user.name} color="#ffffff33" size={56} />
                 <div><h3>{user.name}</h3><p>{user.studentId}</p></div>

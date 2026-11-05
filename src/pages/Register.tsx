@@ -18,9 +18,9 @@ const bloodGroups = ['A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-'];
 const semesters = Array.from({ length: 12 }, (_, i) => i + 1);
 
 const titles: Record<Role, { title: string; intro: string; eyebrow: string }> = {
-  member: { title: 'Become a Member', intro: 'Join NUBCC Family — Registration Fee: ৳99 Only', eyebrow: 'Membership' },
+  member: { title: 'Become a Member', intro: 'Join the Nafi IT team', eyebrow: 'Membership' },
   cr: { title: 'Register as a Class Representative', intro: 'Are you the CR of your section? Register so classmates can find you and the club can reach your batch quickly.', eyebrow: 'Apply · Class Representative' },
-  executive: { title: 'Join the Executive Committee', intro: 'Help lead NUBCC — plan events, run workshops and represent the club. Fill in the form and the admin panel will review your application.', eyebrow: 'Apply · Executive Committee' },
+  executive: { title: 'Join the Executive Committee', intro: 'Help lead Nafi IT — plan events, run workshops and represent the club. Fill in the form and the admin panel will review your application.', eyebrow: 'Apply · Executive Committee' },
 };
 
 export function Register() {
@@ -96,7 +96,7 @@ export function Register() {
           <h2><span className="step-num">1</span>Personal information</h2>
           <div className="form-grid">
             <Field label="Full name" required><input value={form.name} onChange={(e) => set('name', e.target.value)} required placeholder="e.g. Demo Student" /></Field>
-            <Field label="Student ID" required><input value={form.studentId} onChange={(e) => set('studentId', e.target.value)} required placeholder="e.g. NUB-2026-999" /></Field>
+            <Field label="Student ID" required><input value={form.studentId} onChange={(e) => set('studentId', e.target.value)} required placeholder="e.g. NAFIIT-2026-999" /></Field>
             <Field label="Email" required><input type="email" value={form.email} onChange={(e) => set('email', e.target.value)} required placeholder="demo@example.test" /></Field>
             <Field label="Phone" required><input value={form.phone} onChange={(e) => set('phone', e.target.value)} required placeholder="+8801XXXXXXXXX" /></Field>
           </div>

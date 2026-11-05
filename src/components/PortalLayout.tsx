@@ -56,7 +56,7 @@ export function PortalLayout() {
 
   const handleLogout = async () => {
     await logout();
-    toast('Signed out of the demo portal.', 'info');
+    toast('Signed out.', 'info');
     navigate(`/${role}/login`);
   };
 
@@ -89,7 +89,7 @@ export function PortalLayout() {
           <button className="icon-btn portal-menu-btn" onClick={() => setSidebarOpen(true)} aria-label="Open menu"><Menu size={22} /></button>
           <div className="topbar-title">
             <h2>{current?.label || 'Portal'}</h2>
-            <span className="topbar-breadcrumb">NUBCC / {roleLabel(role)}</span>
+            <span className="topbar-breadcrumb">Nafi IT / {roleLabel(role)}</span>
           </div>
           <div className="topbar-actions">
             <Badge variant="warning">Demo mode</Badge>
@@ -115,7 +115,7 @@ export function PortalLayout() {
         </header>
         <div className="portal-content">
           <div className="portal-demo-note">
-            <strong>Demo portal.</strong> All records are fictional. Actions affect only this local demo database.
+            <strong>Nafi IT portal.</strong> Keep your account details private.
           </div>
           <Outlet />
         </div>

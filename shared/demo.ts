@@ -1,7 +1,7 @@
 import type { Role } from './types';
 
 export const DEMO_NOTICE =
-  'Demo clone only. Use the sample accounts below — never enter real NUBCC passwords, payment details, or personal information.';
+  'Demo clone only. Use the sample accounts below — never enter real Nafi IT passwords, payment details, or personal information.';
 
 export const DEMO_ACCOUNTS: Array<{
   role: Role;
@@ -15,24 +15,24 @@ export const DEMO_ACCOUNTS: Array<{
     role: 'member',
     label: 'Member',
     identifierLabel: 'Student ID',
-    identifier: 'NUB-2026-001',
-    password: 'Member@123',
+    identifier: 'NAFIIT-2026-001',
+    password: '',
     name: 'Ayesha Rahman',
   },
   {
     role: 'cr',
     label: 'Class Representative',
     identifierLabel: 'Email',
-    identifier: 'cr@demo.nubcc.test',
-    password: 'Cr@12345',
+    identifier: 'cr@demo.nafiit.test',
+    password: '',
     name: 'Tanvir Ahmed',
   },
   {
     role: 'executive',
     label: 'Executive',
     identifierLabel: 'Email',
-    identifier: 'executive@demo.nubcc.test',
-    password: 'Exec@12345',
+    identifier: 'executive@demo.nafiit.test',
+    password: '',
     name: 'Nusrat Jahan',
   },
 ];

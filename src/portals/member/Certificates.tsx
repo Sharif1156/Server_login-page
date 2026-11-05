@@ -16,14 +16,14 @@ export function Certificates() {
     const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="700" viewBox="0 0 1000 700">
       <rect width="1000" height="700" fill="#f5f8fc"/>
       <rect x="30" y="30" width="940" height="640" fill="white" stroke="#0d6efd" stroke-width="4" rx="18"/>
-      <text x="500" y="120" text-anchor="middle" font-family="Georgia, serif" font-size="34" fill="#0a2540">NUB CSE Computer Club</text>
+      <text x="500" y="120" text-anchor="middle" font-family="Georgia, serif" font-size="34" fill="#0a2540">Nafi IT</text>
       <text x="500" y="170" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#627d98">DEMO CERTIFICATE OF COMPLETION</text>
       <text x="500" y="280" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" fill="#627d98">This certifies that</text>
       <text x="500" y="340" text-anchor="middle" font-family="Georgia, serif" font-size="44" fill="#0a2540">${user?.name || 'Demo Member'}</text>
       <text x="500" y="400" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" fill="#627d98">has completed</text>
       <text x="500" y="450" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" fill="#0d6efd">${c.title}</text>
       <text x="500" y="540" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#627d98">Issued ${formatDate(c.issuedAt)} · Code ${c.code}</text>
-      <text x="500" y="620" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#9fb3c8">Demo only — not an official NUBCC certificate.</text>
+      <text x="500" y="620" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#9fb3c8">Demo only — not an official Nafi IT certificate.</text>
     </svg>`;
     const blob = new Blob([svg], { type: 'image/svg+xml' });
     const url = URL.createObjectURL(blob);

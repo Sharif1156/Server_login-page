@@ -16,8 +16,8 @@ const config: Record<Role, {
     title: 'Member Login',
     subtitle: 'Sign in with your student ID to view your membership and event registrations.',
     identifierLabel: 'Student ID',
-    registerText: 'Not a member yet?', registerLink: 'Join NUBCC',
-    registerNote: 'Your account activates once your payment is verified.', keepSignedIn: false, forgot: true,
+    registerText: 'Not a member yet?', registerLink: 'Join Nafi IT',
+    registerNote: 'Your account is activated after review by the Nafi IT team.', keepSignedIn: false, forgot: true,
     icon: IdCard,
   },
   cr: {
@@ -46,6 +46,7 @@ export function Login() {
   const cfg = config[role];
   const Icon = cfg.icon;
   const demo = demoAccount(role);
+  const showDemo = import.meta.env.VITE_SHOW_DEMO === 'true';
   const navigate = useNavigate();
   const { login, user } = useAuth();
   const { toast } = useToast();
@@ -59,13 +60,13 @@ export function Login() {
 
   const fillDemo = () => {
     setIdentifier(demo.identifier);
-    setPassword(demo.password);
+    setPassword('');
     setError('');
   };
 
   const copyDemo = async () => {
     try {
-      await navigator.clipboard.writeText(`${demo.identifier} / ${demo.password}`);
+      await navigator.clipboard.writeText(demo.identifier);
       setCopied(true);
       setTimeout(() => setCopied(false), 1500);
     } catch {
@@ -147,13 +148,14 @@ export function Login() {
             </button>
           </form>
 
+          {showDemo && (
           <details className="demo-access">
             <summary><ShieldCheck size={15} /> Demo access</summary>
             <div className="demo-access-body">
-              <p className="demo-warning">Demo clone only. Use this sample account — never enter real NUBCC credentials.</p>
+              <p className="demo-warning">Use your assigned Nafi IT account credentials only.</p>
               <dl>
                 <div><dt>{demo.identifierLabel}</dt><dd><code>{demo.identifier}</code></dd></div>
-                <div><dt>Password</dt><dd><code>{demo.password}</code></dd></div>
+                
               </dl>
               <div className="demo-access-actions">
                 <button type="button" className="btn btn-outline btn-sm" onClick={fillDemo}>Use demo account</button>
@@ -163,6 +165,7 @@ export function Login() {
               </div>
             </div>
           </details>
+          )}
         </div>
 
         <div className="auth-footer">

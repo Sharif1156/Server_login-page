@@ -21,7 +21,9 @@ declare module 'express-session' {
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, '..');
-const isProd = process.env.NODE_ENV === 'production';
+const isProd = process.env.NODE_ENV === 'production' || process.argv.includes('--production');
+// Secure cookies need HTTPS. Turn on only when the site is served over https.
+const cookieSecure = process.env.COOKIE_SECURE === 'true';
 const PORT = Number(process.env.PORT || 3000);
 
 const app = express();
@@ -37,14 +39,14 @@ app.use((req, res, next) => {
 });
 
 app.use(session({
-  name: 'nubcc_demo_sid',
+  name: 'nafiit_demo_sid',
   secret: process.env.SESSION_SECRET || randomBytes(32).toString('hex'),
   resave: false,
   saveUninitialized: false,
   cookie: {
     httpOnly: true,
     sameSite: 'lax',
-    secure: isProd,
+    secure: cookieSecure,
     maxAge: 8 * 60 * 60 * 1000,
   },
 }));
@@ -99,11 +101,11 @@ app.post('/api/auth/login', authLimiter, asyncHandler(async (req, res) => {
   const demo = demoAccount(role);
   // Demo-only: reject anything that is not the advertised sample account.
   if (identifier.toLowerCase() !== demo.identifier.toLowerCase()) {
-    return res.status(401).json({ error: 'Demo only: use the sample account shown on this page. Real NUBCC credentials are not accepted.' });
+    return res.status(401).json({ error: 'Demo only: use the sample account shown on this page. Real Nafi IT credentials are not accepted.' });
   }
   const record = queries.userByLogin(role, identifier);
   if (!record || !bcrypt.compareSync(password, record.passwordHash)) {
-    return res.status(401).json({ error: 'Incorrect demo password. Use the sample password shown on this page.' });
+    return res.status(401).json({ error: 'Incorrect password.' });
   }
   await new Promise<void>((resolve, reject) => req.session.regenerate((err) => (err ? reject(err) : resolve())));
   req.session.userId = record.user.id;
@@ -116,7 +118,7 @@ app.post('/api/auth/login', authLimiter, asyncHandler(async (req, res) => {
 
 app.post('/api/auth/logout', (req, res) => {
   req.session.destroy(() => {
-    res.clearCookie('nubcc_demo_sid');
+    res.clearCookie('nafiit_demo_sid');
     res.json({ ok: true });
   });
 });
@@ -419,6 +421,6 @@ app.use((err: any, _req: express.Request, res: express.Response, _next: express.
 });
 
 httpServer.listen(PORT, '0.0.0.0', () => {
-  console.log(`NUBCC demo portal running at http://0.0.0.0:${PORT} (${isProd ? 'production' : 'development'})`);
-  console.log('Demo accounts: member NUB-2026-001 / Member@123 · cr cr@demo.nubcc.test / Cr@12345 · executive executive@demo.nubcc.test / Exec@12345');
+  console.log(`Nafi IT demo portal running at http://0.0.0.0:${PORT} (${isProd ? 'production' : 'development'})`);
+  console.log('Accounts use passwords from NAFIIT_MEMBER_PASSWORD, NAFIIT_CR_PASSWORD and NAFIIT_EXECUTIVE_PASSWORD.');
 });
