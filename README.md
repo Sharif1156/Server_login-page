@@ -1,18 +1,18 @@
-# NUBCC Login & Portals — Focused Demo
+# Nafi IT Login & Portals — Focused Demo
 
-A focused, dark-themed demo inspired by the NUB CSE Computer Club sign-in experience.
+A focused, dark-themed demo inspired by the Nafi IT Computer Club sign-in experience.
 
 **Scope:** homepage + login/registration/forgot-password pages + three protected portals. No extra public content pages.
 
-> ⚠️ Unofficial demo clone. Not connected to nubcc.club. No real emails, payments, uploads, or credentials. Only the sample accounts below can sign in.
+> ⚠️ Nafi IT login and portal demo. No real emails, payments, uploads, or credentials. Only the sample accounts below can sign in.
 
 ## Demo accounts
 
 | Portal | Login | Password |
 | --- | --- | --- |
-| Member | `NUB-2026-001` | `Member@123` |
-| Class Representative | `cr@demo.nubcc.test` | `Cr@12345` |
-| Executive | `executive@demo.nubcc.test` | `Exec@12345` |
+| Member | `NAFIIT-2026-001` | `Member@123` |
+| Class Representative | `cr@demo.nafiit.test` | `Cr@12345` |
+| Executive | `executive@demo.nafiit.test` | `Exec@12345` |
 
 On each login page, expand **Demo access** and click **Use demo account**.
 

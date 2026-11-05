@@ -37,7 +37,7 @@ app.use((req, res, next) => {
 });
 
 app.use(session({
-  name: 'nubcc_demo_sid',
+  name: 'nafiit_demo_sid',
   secret: process.env.SESSION_SECRET || randomBytes(32).toString('hex'),
   resave: false,
   saveUninitialized: false,
@@ -99,7 +99,7 @@ app.post('/api/auth/login', authLimiter, asyncHandler(async (req, res) => {
   const demo = demoAccount(role);
   // Demo-only: reject anything that is not the advertised sample account.
   if (identifier.toLowerCase() !== demo.identifier.toLowerCase()) {
-    return res.status(401).json({ error: 'Demo only: use the sample account shown on this page. Real NUBCC credentials are not accepted.' });
+    return res.status(401).json({ error: 'Demo only: use the sample account shown on this page. Real Nafi IT credentials are not accepted.' });
   }
   const record = queries.userByLogin(role, identifier);
   if (!record || !bcrypt.compareSync(password, record.passwordHash)) {
@@ -116,7 +116,7 @@ app.post('/api/auth/login', authLimiter, asyncHandler(async (req, res) => {
 
 app.post('/api/auth/logout', (req, res) => {
   req.session.destroy(() => {
-    res.clearCookie('nubcc_demo_sid');
+    res.clearCookie('nafiit_demo_sid');
     res.json({ ok: true });
   });
 });
@@ -419,6 +419,6 @@ app.use((err: any, _req: express.Request, res: express.Response, _next: express.
 });
 
 httpServer.listen(PORT, '0.0.0.0', () => {
-  console.log(`NUBCC demo portal running at http://0.0.0.0:${PORT} (${isProd ? 'production' : 'development'})`);
-  console.log('Demo accounts: member NUB-2026-001 / Member@123 · cr cr@demo.nubcc.test / Cr@12345 · executive executive@demo.nubcc.test / Exec@12345');
+  console.log(`Nafi IT demo portal running at http://0.0.0.0:${PORT} (${isProd ? 'production' : 'development'})`);
+  console.log('Demo accounts: member NAFIIT-2026-001 / Member@123 · cr cr@demo.nafiit.test / Cr@12345 · executive executive@demo.nafiit.test / Exec@12345');
 });

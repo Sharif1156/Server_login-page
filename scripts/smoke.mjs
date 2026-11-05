@@ -22,9 +22,9 @@ const stats = await req('/api/public/stats');
 assert(stats.status === 200 && stats.data.stats.members > 0, 'public stats');
 
 const accounts = [
-  ['member', 'NUB-2026-001', 'Member@123'],
-  ['cr', 'cr@demo.nubcc.test', 'Cr@12345'],
-  ['executive', 'executive@demo.nubcc.test', 'Exec@12345'],
+  ['member', 'NAFIIT-2026-001', 'Member@123'],
+  ['cr', 'cr@demo.nafiit.test', 'Cr@12345'],
+  ['executive', 'executive@demo.nafiit.test', 'Exec@12345'],
 ];
 const cookies = {};
 for (const [role, identifier, password] of accounts) {
@@ -35,7 +35,7 @@ for (const [role, identifier, password] of accounts) {
   assert(me.data.user?.role === role, `${role} session`);
 }
 
-const rejected = await req('/api/auth/login', { method: 'POST', body: { role: 'member', identifier: 'real@nubcc.club', password: 'secret' } });
+const rejected = await req('/api/auth/login', { method: 'POST', body: { role: 'member', identifier: 'real@example.com', password: 'secret' } });
 assert(rejected.status === 401, 'non-demo credentials rejected');
 
 const events = await req('/api/portal/events', { cookie: cookies.member });
@@ -69,7 +69,7 @@ if (ann.data.id) {
 }
 
 const appSubmit = await req('/api/public/applications', { method: 'POST', body: {
-  role: 'cr', name: 'Smoke Test CR', studentId: 'NUB-TEST-999', email: 'smoke@demo.nubcc.test', phone: '+8801700000000',
+  role: 'cr', name: 'Smoke Test CR', studentId: 'NAFIIT-TEST-999', email: 'smoke@demo.nafiit.test', phone: '+8801700000000',
   batch: '70', semester: 1, section: 'A', confirm: true,
 } });
 assert(appSubmit.status === 201, 'public demo application');
